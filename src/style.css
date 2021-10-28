@@ -1,0 +1,56 @@
+:root {
+  --primary-text-color: rgb(255, 255, 255);
+  --primary-color: rgb(45, 51, 59);
+  --primary-bg-color: rgb(34, 40, 49);
+  --secondary-color: rgb(0, 255, 255);
+}
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+}
+.body {
+  width: 100%;
+}
+.body .heading {
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 3px;
+  margin: 8em 0;
+}
+.body .heading .underline {
+  margin: 1.5em auto;
+  width: 150px;
+  height: 5px;
+  background-color: var(--secondary-color);
+}
+.body .content {
+  width: 500px;
+  padding: 25px;
+  background-color: var(--primary-color);
+  margin: 0 auto 10em auto;
+}
+.content_heading {
+  color: var(--secondary-color);
+  text-align: center;
+  margin: 1.5em 0;
+}
+.form-control, .form-select {
+  background: var(--primary-bg-color) !important;
+  border: none;
+  color: var(--primary-text-color) !important;
+}
+.form-control:focus, .form-select:focus{
+  box-shadow: none !important;
+  outline: 1px solid var(--secondary-color) ;
+}
+select:focus{
+  border: 1px solid var(--secondary-color) !important;
+}
