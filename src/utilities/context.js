@@ -1,6 +1,5 @@
 import React, { useContext, useReducer } from "react";
 import { reducer } from "./reducer";
-import { fetchData } from "./fetch";
 
 const table = {
   sports: 21,
@@ -14,9 +13,13 @@ const initialState = {
     category: "history",
     difficulty: "hard",
   },
+  url: "",
   questions: [],
-  loading: false,
+  currentQuestions: [],
   waitingForOptions: true,
+  currentPage: 1,
+  postsPerPage: 1,
+  score: 0,
 };
 
 const AppContext = React.createContext();
@@ -32,18 +35,36 @@ const AppProvider = ({ children }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let url = `https://opentdb.com/api.php?amount=${
-      state.quizOptions.amount
-    }&category=${table[state.quizOptions.category]}&difficulty=${
-      state.quizOptions.difficulty
-    }&type=multiple`;
-    fetchData(url).then((response) => {
-      state.questions = response.results;
-    });
+    dispatch({ type: "HANDLE_SUBMIT", payload: { table } });
+  };
+
+  const nextQuestion = () => {
+    dispatch({ type: "NEXT_QUESTION" });
+  };
+
+  const handleReset = () => {
+    dispatch({ type: "HANDLE_RESET" });
+  };
+
+  const checkAnswer = (params) => {
+    if (params) {
+      dispatch({ type: "INCREASE_SCORE" });
+    } else {
+      dispatch({ type: "NEXT_QUESTION" });
+    }
   };
 
   return (
-    <AppContext.Provider value={{ state, handleSubmit, handleChange }}>
+    <AppContext.Provider
+      value={{
+        state,
+        handleSubmit,
+        handleChange,
+        nextQuestion,
+        handleReset,
+        checkAnswer,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

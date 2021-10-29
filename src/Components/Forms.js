@@ -5,7 +5,7 @@ import SetupForm from "./SetupForm";
 
 const Forms = () => {
   const { state } = useAppContext();
-  
+
   if (state.waitingForOptions) {
     return (
       <>

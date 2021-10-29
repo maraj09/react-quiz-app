@@ -3,6 +3,7 @@ import { useAppContext } from "../utilities/context";
 
 const SetupForm = () => {
   const { state, handleSubmit, handleChange } = useAppContext();
+
   return (
     <>
       <div className="content">
